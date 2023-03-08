@@ -3,22 +3,22 @@ import Movie from '../components/collection/Movie';
 
 export default function Collection(){
     const [collection, setCollection] = useState([]);
-    const [checkCol, setCheckCol] = useState([false]);
+    // const [checkCol, setCheckCol] = useState([false]);
+
+    let storage = JSON.parse(localStorage.getItem('collection'));
 
     useEffect(()=>{
         if(localStorage.getItem('collection')){
-            setCollection(JSON.parse(localStorage.getItem('collection')))
-            setCheckCol([false]);
-        } else {
-            setCheckCol([true]);
+            setCollection(storage)
         }
-    }, checkCol);
+    }, [collection]);
+
 
     return(
         <div className='d-inline-flex flex-wrap justify-content-center' id='movieOutput'>
         {
             collection.length > 0 ? collection.map((movie)=>{
-                return <Movie movie={movie} key={movie.imdbID} setCheckCol={setCheckCol} />
+                return <Movie movie={movie} key={movie.imdbID} />
             }) : <h2>Add some movies to your collection!</h2>
         }
         </div>
