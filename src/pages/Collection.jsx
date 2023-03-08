@@ -3,15 +3,12 @@ import Movie from '../components/collection/Movie';
 
 export default function Collection(){
     const [collection, setCollection] = useState([]);
-    // const [checkCol, setCheckCol] = useState([false]);
 
     let storage = JSON.parse(localStorage.getItem('collection'));
 
     useEffect(()=>{
-        if(localStorage.getItem('collection')){
-            setCollection(storage)
-        }
-    }, [collection]);
+        setCollection(storage)
+    }, [storage]);
 
 
     return(
